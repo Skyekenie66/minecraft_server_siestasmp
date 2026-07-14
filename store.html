@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Store • Siesta SMP</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+--bg:#080B16;
+--glass:rgba(255,255,255,.05);
+--line:rgba(255,255,255,.12);
+
+--cyan:#70E6FF;
+--blue:#4C8FFF;
+--purple:#9B7DFF;
+
+--text:#F8FBFF;
+--muted:#B5C3DD;
+
+}
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:Manrope,sans-serif;
+
+background:
+
+radial-gradient(circle at top,#1A335F 0%,#0A1020 42%,#050913 100%);
+
+color:var(--text);
+
+overflow-x:hidden;
+
+}
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+opacity:.12;
+
+background-image:
+
+radial-gradient(circle,#ffffff 1px,transparent 1px);
+
+background-size:38px 38px;
+
+animation:stars 40s linear infinite;
+
+}
+
+@keyframes stars{
+
+to{
+
+transform:translateY(-120px);
+
+}
+
+}
+
+header{
+
+position:fixed;
+
+top:18px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:min(1140px,94%);
+
+padding:14px 20px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:rgba(10,15,28,.72);
+
+backdrop-filter:blur(20px);
+
+border:1px solid var(--line);
+
+border-radius:22px;
+
+z-index:999;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+font-family:Syne;
+
+font-size:1.2rem;
+
+font-weight:800;
+
+}
+
+.logo img{
+
+width:48px;
+
+height:48px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+nav{
+
+display:flex;
+
+gap:22px;
+
+}
+
+nav a{
+
+color:white;
+
+text-decoration:none;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:var(--cyan);
+
+}
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+text-align:center;
+
+padding:140px 20px 80px;
+
+}
+
+.badge{
+
+padding:8px 18px;
+
+border-radius:999px;
+
+background:rgba(112,230,255,.12);
+
+border:1px solid rgba(112,230,255,.3);
+
+color:var(--cyan);
+
+font-size:.82rem;
+
+font-weight:800;
+
+margin-bottom:24px;
+
+}
+
+.hero h1{
+
+font-family:Syne;
+
+font-size:clamp(4rem,10vw,8rem);
+
+line-height:.9;
+
+background:
+
+linear-gradient(90deg,#FFF,#70E6FF,#7E9DFF,#B48CFF);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.hero p{
+
+max-width:760px;
+
+margin-top:24px;
+
+font-size:1.08rem;
+
+line-height:1.9;
+
+color:var(--muted);
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+gap:18px;
+
+margin-top:40px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.button{
+
+padding:15px 30px;
+
+border-radius:15px;
+
+font-weight:800;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+.primary{
+
+background:linear-gradient(135deg,var(--cyan),var(--purple));
+
+color:#06101E;
+
+}
+
+.secondary{
+
+border:1px solid var(--line);
+
+background:rgba(255,255,255,.05);
+
+color:white;
+
+}
+
+.button:hover{
+
+transform:translateY(-4px);
+
+}
+
+.section{
+
+width:min(1140px,92%);
+
+margin:auto;
+
+padding:90px 0;
+
+}
+
+.section-title{
+
+text-align:center;
+
+margin-bottom:50px;
+
+}
+
+.section-title h2{
+
+font-family:Syne;
+
+font-size:clamp(2.5rem,5vw,4rem);
+
+}
+
+.section-title p{
+
+margin-top:15px;
+
+color:var(--muted);
+
+}
+
+.category-menu{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-bottom:50px;
+
+}
+
+.category-btn{
+
+padding:14px 24px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid var(--line);
+
+border-radius:15px;
+
+color:white;
+
+font-weight:800;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.category-btn.active{
+
+background:linear-gradient(135deg,var(--cyan),var(--purple));
+
+color:#06101E;
+
+}
+
+.products{
+
+display:none;
+
+}
+
+.products.active{
+
+display:block;
+
+}
+
+footer{
+
+margin-top:100px;
+
+padding:50px 20px;
+
+text-align:center;
+
+border-top:1px solid rgba(255,255,255,.1);
+
+color:var(--muted);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="img/logo.png">
+
+<span>Siesta SMP</span>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="faq.html">FAQ</a>
+
+<a href="rules.html">Rules</a>
+
+<a href="store.html">Store</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="badge">
+
+SUPPORT SIESTA SMP
+
+</div>
+
+<h1>
+
+STORE
+
+</h1>
+
+<p>
+
+Semua pembelian digunakan untuk membantu biaya VPS, plugin premium, domain, backup server, serta pengembangan Siesta SMP. Server ini tidak menjual item Pay-to-Win agar permainan tetap adil bagi semua pemain.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#store" class="button primary">
+
+🛒 Lihat Store
+
+</a>
+
+<a href="index.html" class="button secondary">
+
+🏠 Kembali
+
+</a>
+
+</div>
+
+</section>
+
+<section class="section" id="store">
+
+<div class="section-title">
+
+<h2>
+
+Store Siesta
+
+</h2>
+
+<p>
+
+Pilih kategori yang ingin kamu lihat.
+
+</p>
+
+</div>
+
+<div class="category-menu">
+
+<button class="category-btn active" data-tab="rank">
+
+👑 Rank
+
+</button>
+
+<button class="category-btn" data-tab="key">
+
+🗝 Key
+
+</button>
+
+<button class="category-btn" data-tab="particle">
+
+✨ Particle
+
+</button>
+
+<button class="category-btn" data-tab="bundle">
+
+🎁 Bundle
+
+</button>
+
+</div>
+
+<div id="rank" class="products active">
+
+<div class="card-grid">
+
+<!-- ================= Rank 1 ================= -->
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/rank1.png" alt="Traveler">
+
+</div>
+
+<div class="card-content">
+
+<h3>🥉 Traveler</h3>
+
+<p>
+
+Rank awal untuk mendukung perkembangan Siesta SMP.
+
+</p>
+
+<ul>
+
+<li>✔ Prefix Traveler</li>
+
+<li>✔ Warna nama spesial</li>
+
+<li>✔ Discord Supporter</li>
+
+<li>✔ Mendukung server ❤️</li>
+
+</ul>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/message/P4M4RM54LJPPA1?text=Halo%20Admin%20Siesta%20SMP!%20Saya%20ingin%20membeli%20Rank%20Traveler.">
+
+🛒 Beli Sekarang
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ================= Rank 2 ================= -->
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/rank2.png" alt="Adventurer">
+
+</div>
+
+<div class="card-content">
+
+<h3>🥈 Adventurer</h3>
+
+<p>
+
+Cocok untuk pemain yang aktif menjelajah dunia Siesta.
+
+</p>
+
+<ul>
+
+<li>✔ Prefix Adventurer</li>
+
+<li>✔ Cosmetic dasar</li>
+
+<li>✔ Discord Role</li>
+
+<li>✔ Support Server</li>
+
+</ul>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin!%20Saya%20ingin%20membeli%20Rank%20Adventurer.">
+
+🛒 Beli Sekarang
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ================= Rank 3 ================= -->
+
+<div class="card">
+
+<div class="badge-card">
+
+POPULER
+
+</div>
+
+<div class="card-image">
+
+<img src="img/rank3.png" alt="Explorer">
+
+</div>
+
+<div class="card-content">
+
+<h3>🥇 Explorer</h3>
+
+<p>
+
+Rank favorit komunitas dengan berbagai cosmetic menarik.
+
+</p>
+
+<ul>
+
+<li>✔ Prefix Explorer</li>
+
+<li>✔ Cosmetic Eksklusif</li>
+
+<li>✔ Particle Dasar</li>
+
+<li>✔ Discord Role</li>
+
+</ul>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin!%20Saya%20ingin%20membeli%20Rank%20Explorer.">
+
+🛒 Beli Sekarang
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ================= Rank 4 ================= -->
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/rank4.png" alt="Guardian">
+
+</div>
+
+<div class="card-content">
+
+<h3>💎 Guardian</h3>
+
+<p>
+
+Rank premium dengan lebih banyak kosmetik.
+
+</p>
+
+<ul>
+
+<li>✔ Prefix Guardian</li>
+
+<li>✔ Particle Premium</li>
+
+<li>✔ Cosmetic Premium</li>
+
+<li>✔ Discord Elite</li>
+
+</ul>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin!%20Saya%20ingin%20membeli%20Rank%20Guardian.">
+
+🛒 Beli Sekarang
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ================= Rank 5 ================= -->
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/rank5.png" alt="Mythic">
+
+</div>
+
+<div class="card-content">
+
+<h3>👑 Mythic</h3>
+
+<p>
+
+Rank elite untuk pemain yang ingin tampil lebih istimewa.
+
+</p>
+
+<ul>
+
+<li>✔ Semua Benefit Guardian</li>
+
+<li>✔ Cosmetic Mythic</li>
+
+<li>✔ Particle Mythic</li>
+
+<li>✔ Discord Mythic</li>
+
+</ul>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin!%20Saya%20ingin%20membeli%20Rank%20Mythic.">
+
+🛒 Beli Sekarang
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ================= Rank 6 ================= -->
+
+<div class="card legendary">
+
+<div class="badge-card">
+
+TERBAIK
+
+</div>
+
+<div class="card-image">
+
+<img src="img/rank6.png" alt="Celestial">
+
+</div>
+
+<div class="card-content">
+
+<h3>🌌 Celestial</h3>
+
+<p>
+
+Rank tertinggi Siesta SMP dengan seluruh benefit yang tersedia.
+
+</p>
+
+<ul>
+
+<li>✔ Semua Benefit</li>
+
+<li>✔ Semua Cosmetic</li>
+
+<li>✔ Semua Particle</li>
+
+<li>✔ Celestial Discord Role</li>
+
+<li>✔ Nama Berwarna Eksklusif</li>
+
+</ul>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin!%20Saya%20ingin%20membeli%20Rank%20Celestial.">
+
+✨ Beli Rank Tertinggi
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="key" class="products">
+
+<div class="card-grid">
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/key1.png">
+
+</div>
+
+<div class="card-content">
+
+<h3>🗝 Common Key</h3>
+
+<p>
+
+Membuka Common Crate dengan hadiah cosmetic dan item menarik.
+
+</p>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Common%20Key">
+
+🛒 Beli
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/key2.png">
+
+</div>
+
+<div class="card-content">
+
+<h3>💙 Rare Key</h3>
+
+<p>
+
+Hadiah lebih langka dan kesempatan mendapatkan cosmetic premium.
+
+</p>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Rare%20Key">
+
+🛒 Beli
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="badge-card">
+
+POPULER
+
+</div>
+
+<div class="card-image">
+
+<img src="img/key3.png">
+
+</div>
+
+<div class="card-content">
+
+<h3>💜 Epic Key</h3>
+
+<p>
+
+Kesempatan memperoleh particle eksklusif dan cosmetic langka.
+
+</p>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Epic%20Key">
+
+🛒 Beli
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card legendary">
+
+<div class="badge-card">
+
+LIMITED
+
+</div>
+
+<div class="card-image">
+
+<img src="img/key4.png">
+
+</div>
+
+<div class="card-content">
+
+<h3>👑 Legendary Key</h3>
+
+<p>
+
+Key terbaik dengan hadiah paling langka yang tersedia.
+
+</p>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Legendary%20Key">
+
+✨ Beli
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="particle" class="products">
+
+<div class="card-grid">
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/particle1.gif">
+
+</div>
+
+<div class="card-content">
+
+<h3>✨ Blue Aura</h3>
+
+<p>
+
+Aura biru elegan yang mengelilingi pemain.
+
+</p>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Blue%20Aura">
+
+Beli
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/particle2.gif">
+
+</div>
+
+<div class="card-content">
+
+<h3>🔥 Flame</h3>
+
+<p>
+
+Api kecil mengikuti pemain kemanapun pergi.
+
+</p>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Flame%20Particle">
+
+Beli
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/particle3.gif">
+
+</div>
+
+<div class="card-content">
+
+<h3>❄ Snow</h3>
+
+<p>
+
+Efek salju lembut yang terus turun di sekitar pemain.
+
+</p>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Snow%20Particle">
+
+Beli
+
+</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/particle4.gif">
+
+</div>
+
+<div class="card-content">
+
+<h3>⚡ Thunder</h3>
+
+<p>
+
+Petir mini yang sesekali muncul di sekitar pemain.
+
+</p>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Thunder%20Particle">
+
+Beli
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="bundle" class="products">
+
+<div class="card-grid">
+
+<!-- Bundle -->
+
+<div class="card legendary">
+
+<div class="badge-card">
+
+BEST VALUE
+
+</div>
+
+<div class="card-image">
+
+<img src="img/bundle.png">
+
+</div>
+
+<div class="card-content">
+
+<h3>🎁 Starter Bundle</h3>
+
+<p>
+
+Paket paling hemat untuk pemain baru.
+
+</p>
+
+<ul>
+
+<li>✔ Rank Traveler</li>
+
+<li>✔ 5 Common Key</li>
+
+<li>✔ Blue Aura</li>
+
+<li>✔ Discord Supporter</li>
+
+</ul>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Starter%20Bundle.">
+
+🛒 Beli Bundle
+
+</a>
+
+</div>
+
+</div>
+
+<!-- Bundle 2 -->
+
+<div class="card">
+
+<div class="card-image">
+
+<img src="img/bundle2.png">
+
+</div>
+
+<div class="card-content">
+
+<h3>💎 Premium Bundle</h3>
+
+<p>
+
+Bundle lengkap dengan Rank, Key, dan Particle.
+
+</p>
+
+<ul>
+
+<li>✔ Rank Guardian</li>
+
+<li>✔ 10 Epic Key</li>
+
+<li>✔ Thunder Particle</li>
+
+<li>✔ Discord Elite</li>
+
+</ul>
+
+<div class="price">
+
+Rp xx.xxx
+
+</div>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20membeli%20Premium%20Bundle.">
+
+🛒 Beli Bundle
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<br><br>
+
+<div class="card">
+
+<div class="card-content">
+
+<h2 style="margin-bottom:20px;">
+
+💳 Pembayaran
+
+</h2>
+
+<p>
+
+Pembayaran dapat dilakukan menggunakan salah satu metode berikut.
+
+</p>
+
+<ul>
+
+<li>📱 DANA</li>
+
+<li>📱 GoPay</li>
+
+<li>🏦 Bank Transfer</li>
+
+<li>📷 QRIS</li>
+
+</ul>
+
+<br>
+
+<p>
+
+Setelah pembayaran berhasil, kirimkan bukti pembayaran melalui WhatsApp agar pesanan segera diproses.
+
+</p>
+
+<a class="buy-btn"
+
+href="https://wa.me/62812XXXXXXXX">
+
+Hubungi Admin
+
+</a>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<div class="card-content">
+
+<h2>
+
+📦 Informasi Pesanan
+
+</h2>
+
+<br>
+
+<ul>
+
+<li>✔ Produk dikirim maksimal 5 menit setelah pembayaran dikonfirmasi.</li>
+
+<li>✔ Pastikan Username Minecraft sudah benar.</li>
+
+<li>✔ Semua pembelian bersifat final (non-refundable).</li>
+
+<li>✔ Jika server sedang offline, produk akan dikirim saat server kembali online.</li>
+
+<li>✔ Hubungi Admin apabila terjadi kendala.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+<footer>
+
+© 2026 Siesta SMP • Made with ❤️
+
+</footer>
+
+  <script>
+
+// ==========================
+// CATEGORY SWITCH
+// ==========================
+
+const buttons=document.querySelectorAll(".category-btn");
+
+const tabs=document.querySelectorAll(".products");
+
+buttons.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+buttons.forEach(btn=>btn.classList.remove("active"));
+
+button.classList.add("active");
+
+const target=button.dataset.tab;
+
+tabs.forEach(tab=>{
+
+if(tab.id===target){
+
+tab.style.display="block";
+
+setTimeout(()=>{
+
+tab.classList.add("active");
+
+},20);
+
+}else{
+
+tab.classList.remove("active");
+
+setTimeout(()=>{
+
+tab.style.display="none";
+
+},220);
+
+}
+
+});
+
+});
+
+});
+
+
+// ==========================
+// CARD REVEAL
+// ==========================
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+},
+
+{
+
+threshold:.15
+
+});
+
+document.querySelectorAll(".card").forEach(card=>{
+
+observer.observe(card);
+
+});
+
+</script>
+
+<style>
+
+/* ==========================
+CATEGORY ANIMATION
+========================== */
+
+.products{
+
+display:none;
+
+opacity:0;
+
+transform:translateY(18px);
+
+transition:
+
+opacity .28s ease,
+
+transform .28s ease;
+
+}
+
+.products.active{
+
+display:block;
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* ==========================
+CARD
+========================== */
+
+.card-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:28px;
+
+}
+
+.card{
+
+background:
+
+rgba(255,255,255,.05);
+
+border:
+
+1px solid rgba(255,255,255,.12);
+
+border-radius:24px;
+
+overflow:hidden;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+.card.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+.card:hover{
+
+transform:
+
+translateY(-10px);
+
+box-shadow:
+
+0 0 30px rgba(112,230,255,.25);
+
+}
+
+/* ==========================
+IMAGE
+========================== */
+
+.card-image{
+
+height:220px;
+
+overflow:hidden;
+
+background:#111;
+
+}
+
+.card-image img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+transition:.35s;
+
+}
+
+.card:hover .card-image img{
+
+transform:scale(1.08);
+
+}
+
+/* ==========================
+CONTENT
+========================== */
+
+.card-content{
+
+padding:24px;
+
+}
+
+.card-content h3{
+
+font-family:Syne;
+
+font-size:1.6rem;
+
+margin-bottom:10px;
+
+}
+
+.card-content p{
+
+color:var(--muted);
+
+line-height:1.7;
+
+margin-bottom:18px;
+
+}
+
+.card-content ul{
+
+padding-left:18px;
+
+margin-bottom:20px;
+
+color:#D5E4FF;
+
+}
+
+.card-content li{
+
+margin-bottom:8px;
+
+}
+
+/* ==========================
+PRICE
+========================== */
+
+.price{
+
+font-size:1.55rem;
+
+font-weight:800;
+
+color:var(--cyan);
+
+margin:18px 0;
+
+}
+
+/* ==========================
+BUTTON
+========================== */
+
+.buy-btn{
+
+display:block;
+
+padding:15px;
+
+text-align:center;
+
+border-radius:15px;
+
+text-decoration:none;
+
+font-weight:800;
+
+color:#07111E;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+var(--cyan),
+
+var(--purple));
+
+transition:.3s;
+
+}
+
+.buy-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 0 20px rgba(112,230,255,.35);
+
+}
+
+/* ==========================
+BADGE
+========================== */
+
+.badge-card{
+
+position:absolute;
+
+top:18px;
+
+right:-42px;
+
+padding:8px 55px;
+
+background:#FFD54A;
+
+color:#111;
+
+font-weight:800;
+
+font-size:.75rem;
+
+transform:rotate(45deg);
+
+}
+
+/* ==========================
+LEGENDARY
+========================== */
+
+.legendary{
+
+animation:legendGlow 6s linear infinite;
+
+}
+
+@keyframes legendGlow{
+
+0%{
+
+box-shadow:
+
+0 0 15px #70E6FF;
+
+}
+
+25%{
+
+box-shadow:
+
+0 0 20px #4C8FFF;
+
+}
+
+50%{
+
+box-shadow:
+
+0 0 22px #9B7DFF;
+
+}
+
+75%{
+
+box-shadow:
+
+0 0 20px #70E6FF;
+
+}
+
+100%{
+
+box-shadow:
+
+0 0 15px #70E6FF;
+
+}
+
+}
+
+</style>
+
+</body>
+
+</html>

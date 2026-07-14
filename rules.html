@@ -1,0 +1,1267 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rules • Siesta SMP</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+--bg:#070b16;
+--glass:rgba(255,255,255,.06);
+--border:rgba(255,255,255,.12);
+
+--cyan:#70E6FF;
+--blue:#5B8DFF;
+--purple:#9A7CFF;
+
+--text:#F7FBFF;
+--muted:#B9C7E8;
+
+}
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:Manrope,sans-serif;
+
+background:
+
+radial-gradient(circle at top,#17365c 0%,#0b1224 40%,#060912 100%);
+
+color:var(--text);
+
+overflow-x:hidden;
+
+}
+
+/* Background */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+opacity:.18;
+
+background-image:
+
+radial-gradient(circle,#7eeaff 1px,transparent 1px);
+
+background-size:42px 42px;
+
+animation:stars 45s linear infinite;
+
+}
+
+@keyframes stars{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(-120px);
+
+}
+
+}
+
+/* Aurora */
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:900px;
+
+height:900px;
+
+left:-250px;
+
+top:-300px;
+
+background:
+
+radial-gradient(circle,
+
+rgba(112,230,255,.18),
+
+transparent 70%);
+
+filter:blur(70px);
+
+pointer-events:none;
+
+animation:aurora 10s ease-in-out infinite alternate;
+
+}
+
+@keyframes aurora{
+
+to{
+
+transform:translateX(180px);
+
+}
+
+}
+
+/* Navbar */
+
+header{
+
+position:fixed;
+
+top:18px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:min(1150px,94%);
+
+padding:14px 22px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:rgba(10,15,28,.65);
+
+backdrop-filter:blur(22px);
+
+border:1px solid var(--border);
+
+border-radius:22px;
+
+z-index:999;
+
+box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+font-family:Syne;
+
+font-size:1.2rem;
+
+font-weight:800;
+
+}
+
+.logo img{
+
+width:48px;
+
+height:48px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:2px solid rgba(255,255,255,.15);
+
+box-shadow:
+
+0 0 18px rgba(112,230,255,.3);
+
+}
+
+nav{
+
+display:flex;
+
+gap:24px;
+
+}
+
+nav a{
+
+text-decoration:none;
+
+color:#dce7ff;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:var(--cyan);
+
+}
+
+/* Hero */
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+text-align:center;
+
+padding:120px 20px 40px;
+
+position:relative;
+
+}
+
+.badge{
+
+padding:8px 18px;
+
+border-radius:999px;
+
+background:rgba(112,230,255,.12);
+
+border:1px solid rgba(112,230,255,.25);
+
+color:var(--cyan);
+
+font-size:.82rem;
+
+font-weight:800;
+
+letter-spacing:.12em;
+
+text-transform:uppercase;
+
+margin-bottom:28px;
+
+}
+
+.hero h1{
+
+font-family:Syne;
+
+font-size:clamp(4rem,10vw,8rem);
+
+line-height:.9;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#ffffff,
+
+#70E6FF,
+
+#8D9EFF,
+
+#B786FF);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.hero p{
+
+max-width:760px;
+
+margin-top:28px;
+
+font-size:1.15rem;
+
+line-height:1.9;
+
+color:var(--muted);
+
+}
+
+.buttons{
+
+margin-top:45px;
+
+display:flex;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.btn{
+
+padding:15px 34px;
+
+border-radius:15px;
+
+font-weight:800;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+.primary{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+var(--cyan),
+
+var(--purple));
+
+color:#06101e;
+
+}
+
+.secondary{
+
+border:1px solid var(--border);
+
+background:rgba(255,255,255,.05);
+
+color:white;
+
+}
+
+.btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 10px 25px rgba(112,230,255,.18);
+
+}
+
+/* Scroll */
+
+.scroll{
+
+position:absolute;
+
+bottom:40px;
+
+font-size:.9rem;
+
+color:#9eb7df;
+
+animation:float 2s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+50%{
+
+transform:translateY(8px);
+
+}
+
+}
+
+section{
+
+width:min(1150px,92%);
+
+margin:auto;
+
+padding:90px 0;
+
+}
+
+.section-title{
+
+text-align:center;
+
+margin-bottom:55px;
+
+}
+
+.section-title h2{
+
+font-family:Syne;
+
+font-size:clamp(2.4rem,5vw,4rem);
+
+}
+
+.section-title p{
+
+margin-top:15px;
+
+color:var(--muted);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="img/logo1.png">
+
+<span>Siesta SMP</span>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="faq.html">FAQ</a>
+
+<a href="rules.html">Rules</a>
+
+<a href="donate.html">Donate</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="badge">
+
+Official Server Rules
+
+</div>
+
+<h1>
+
+PLAY FAIR.<br>
+
+BUILD TOGETHER.
+
+</h1>
+
+<p>
+
+Siesta SMP dibangun sebagai tempat bagi semua pemain untuk menikmati pengalaman survival yang adil, nyaman, dan penuh cerita. Dengan mengikuti peraturan ini, kamu membantu menjaga komunitas tetap ramah bagi semua orang.
+
+</p>
+
+<div class="buttons">
+
+<a href="#rules" class="btn primary">
+
+Lihat Peraturan
+
+</a>
+
+<a href="index.html" class="btn secondary">
+
+Kembali ke Home
+
+</a>
+
+</div>
+
+<div class="scroll">
+
+
+
+</div>
+
+</section>
+
+<section id="rules">
+
+<div class="section-title">
+
+<p class="badge">
+
+SERVER GUIDELINES
+
+</p>
+
+<h2>
+
+Peraturan Utama
+
+</h2>
+
+<p>
+
+Bacalah seluruh aturan sebelum mulai bermain.
+
+</p>
+
+</div>
+
+  <style>
+
+.rules-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:24px;
+
+}
+
+.rule-card{
+
+position:relative;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.12);
+
+overflow:hidden;
+
+transition:.35s;
+
+}
+
+.rule-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.rule-card::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+width:4px;
+
+height:100%;
+
+}
+
+.rule-card h3{
+
+font-family:Syne;
+
+margin:18px 0;
+
+font-size:1.5rem;
+
+}
+
+.rule-card ul{
+
+padding-left:18px;
+
+line-height:2;
+
+color:#bfd1f5;
+
+}
+
+.rule-card li{
+
+margin-bottom:6px;
+
+}
+
+.level{
+
+display:inline-block;
+
+padding:8px 16px;
+
+border-radius:999px;
+
+font-size:.78rem;
+
+font-weight:800;
+
+letter-spacing:.08em;
+
+text-transform:uppercase;
+
+}
+
+/* Ringan */
+
+.easy::before{
+
+background:#5cff9d;
+
+}
+
+.easy:hover{
+
+box-shadow:0 0 30px rgba(92,255,157,.18);
+
+}
+
+.easy .level{
+
+background:rgba(92,255,157,.12);
+
+color:#67ffae;
+
+}
+
+/* Sedang */
+
+.medium::before{
+
+background:#ffd84d;
+
+}
+
+.medium:hover{
+
+box-shadow:0 0 30px rgba(255,216,77,.16);
+
+}
+
+.medium .level{
+
+background:rgba(255,216,77,.13);
+
+color:#ffe37b;
+
+}
+
+/* Berat */
+
+.hard::before{
+
+background:#ff6161;
+
+}
+
+.hard:hover{
+
+box-shadow:0 0 35px rgba(255,97,97,.20);
+
+}
+
+.hard .level{
+
+background:rgba(255,97,97,.13);
+
+color:#ff8b8b;
+
+}
+
+.icon{
+
+font-size:2.6rem;
+
+}
+
+</style>
+
+<div class="rules-grid">
+
+<div class="rule-card easy">
+
+<div class="icon">🤝</div>
+
+<span class="level">
+
+🟢 Ringan
+
+</span>
+
+<h3>
+
+Hormati Pemain
+
+</h3>
+
+<ul>
+
+<li>Tidak toxic kepada pemain lain.</li>
+
+<li>Hormati seluruh Staff.</li>
+
+<li>Gunakan bahasa yang sopan.</li>
+
+<li>Jaga suasana komunitas tetap nyaman.</li>
+
+</ul>
+
+</div>
+
+<div class="rule-card easy">
+
+<div class="icon">💬</div>
+
+<span class="level">
+
+🟢 Ringan
+
+</span>
+
+<h3>
+
+Chat Server
+
+</h3>
+
+<ul>
+
+<li>Dilarang spam chat.</li>
+
+<li>Jangan flood command.</li>
+
+<li>Tidak mengirim link berbahaya.</li>
+
+<li>Gunakan nickname yang pantas.</li>
+
+</ul>
+
+</div>
+
+<div class="rule-card medium">
+
+<div class="icon">⚔️</div>
+
+<span class="level">
+
+🟡 Sedang
+
+</span>
+
+<h3>
+
+PvP & Survival
+
+</h3>
+
+<ul>
+
+<li>PvP diperbolehkan.</li>
+
+<li>Dilarang Spawn Kill.</li>
+
+<li>Jangan grief base pemain.</li>
+
+<li>Hormati wilayah yang sudah di-claim.</li>
+
+</ul>
+
+</div>
+
+<div class="rule-card medium">
+
+<div class="icon">🏡</div>
+
+<span class="level">
+
+🟡 Sedang
+
+</span>
+
+<h3>
+
+Build & Claim
+
+</h3>
+
+<ul>
+
+<li>Bangun dengan jarak yang wajar.</li>
+
+<li>Jangan merusak hasil karya pemain.</li>
+
+<li>Gunakan fitur claim bila tersedia.</li>
+
+<li>Hargai proyek komunitas.</li>
+
+</ul>
+
+</div>
+
+<div class="rule-card hard">
+
+<div class="icon">🚫</div>
+
+<span class="level">
+
+🔴 Berat
+
+</span>
+
+<h3>
+
+Cheat & Hack
+
+</h3>
+
+<ul>
+
+<li>X-Ray.</li>
+
+<li>Fly Hack.</li>
+
+<li>Kill Aura.</li>
+
+<li>Auto Clicker.</li>
+
+<li>Macro.</li>
+
+</ul>
+
+</div>
+
+<div class="rule-card hard">
+
+<div class="icon">💀</div>
+
+<span class="level">
+
+🔴 Berat
+
+</span>
+
+<h3>
+
+Exploit
+
+</h3>
+
+<ul>
+
+<li>Item Dupe.</li>
+
+<li>Bug Abuse.</li>
+
+<li>Crash Server.</li>
+
+<li>Ban Evading.</li>
+
+<li>Mengganggu stabilitas server.</li>
+
+</ul>
+
+</div>
+
+</div>
+<section style="margin-top:110px;">
+
+<div class="section-title">
+
+<p class="badge">
+PENEGAKAN ATURAN
+</p>
+
+<h2>
+Sistem Hukuman
+</h2>
+
+<p>
+Setiap pelanggaran akan ditindak sesuai tingkat kesalahannya.
+</p>
+
+</div>
+
+<style>
+
+.punishment{
+
+display:flex;
+
+flex-direction:column;
+
+gap:22px;
+
+max-width:760px;
+
+margin:auto;
+
+position:relative;
+
+}
+
+.punishment::before{
+
+content:"";
+
+position:absolute;
+
+left:34px;
+
+top:25px;
+
+bottom:25px;
+
+width:3px;
+
+background:linear-gradient(
+
+180deg,
+
+#67ffb0,
+
+#ffe26b,
+
+#ff6b6b);
+
+}
+
+.step{
+
+display:flex;
+
+gap:22px;
+
+align-items:flex-start;
+
+padding:24px;
+
+border-radius:22px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.10);
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+}
+
+.step:hover{
+
+transform:translateX(8px);
+
+box-shadow:0 0 28px rgba(112,230,255,.16);
+
+}
+
+.circle{
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:1.7rem;
+
+font-weight:bold;
+
+flex-shrink:0;
+
+}
+
+.green{
+
+background:rgba(95,255,155,.15);
+
+border:2px solid #6cffb4;
+
+}
+
+.yellow{
+
+background:rgba(255,216,80,.15);
+
+border:2px solid #ffd95c;
+
+}
+
+.orange{
+
+background:rgba(255,160,70,.15);
+
+border:2px solid #ffb058;
+
+}
+
+.red{
+
+background:rgba(255,90,90,.15);
+
+border:2px solid #ff6a6a;
+
+}
+
+.black{
+
+background:rgba(255,255,255,.08);
+
+border:2px solid #9aa8c7;
+
+}
+
+.step h3{
+
+font-family:Syne;
+
+margin-bottom:10px;
+
+font-size:1.45rem;
+
+}
+
+.step p{
+
+color:#bfd2f7;
+
+line-height:1.8;
+
+}
+
+</style>
+
+<div class="punishment">
+
+<div class="step">
+
+<div class="circle green">
+1
+</div>
+
+<div>
+
+<h3>🟢 Warning</h3>
+
+<p>
+Peringatan pertama diberikan untuk pelanggaran ringan. Pemain diminta memperbaiki perilaku tanpa hukuman berat.
+</p>
+
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="circle yellow">
+2
+</div>
+
+<div>
+
+<h3>🟡 Mute</h3>
+
+<p>
+Digunakan apabila pemain melakukan spam, toxic, atau mengganggu chat komunitas.
+</p>
+
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="circle orange">
+3
+</div>
+
+<div>
+
+<h3>🟠 Kick</h3>
+
+<p>
+Pemain akan dikeluarkan sementara dari server sebagai bentuk peringatan yang lebih serius.
+</p>
+
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="circle red">
+4
+</div>
+
+<div>
+
+<h3>🔴 Temporary Ban</h3>
+
+<p>
+Ban sementara diberikan untuk griefing, exploit ringan, atau pelanggaran berulang.
+</p>
+
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="circle black">
+5
+</div>
+
+<div>
+
+<h3>⚫ Permanent Ban</h3>
+
+<p>
+Cheat, X-Ray, Dupe, Crash Server, maupun pelanggaran berat lainnya dapat mengakibatkan ban permanen.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+  <section style="margin-top:100px;">
+
+<div style="
+
+padding:60px;
+
+border-radius:28px;
+
+background:linear-gradient(
+135deg,
+rgba(112,230,255,.08),
+rgba(154,124,255,.08));
+
+border:1px solid rgba(255,255,255,.12);
+
+text-align:center;
+
+backdrop-filter:blur(20px);
+
+">
+
+<h2 style="font-family:Syne;font-size:2.8rem;">
+
+💙 Selamat Datang di Siesta SMP
+
+</h2>
+
+<p style="
+
+max-width:720px;
+
+margin:30px auto;
+
+line-height:2;
+
+color:#bfd2f7;
+
+">
+
+Kami percaya bahwa Minecraft akan menjadi lebih menyenangkan ketika dimainkan bersama orang-orang yang saling menghormati.
+
+Peraturan ini dibuat bukan untuk membatasi kreativitas, tetapi untuk menjaga agar setiap petualangan, bangunan, dan cerita yang tercipta di Siesta SMP dapat dinikmati oleh semua pemain.
+
+</p>
+
+<div class="buttons">
+
+<a href="index.html" class="btn primary">
+
+Kembali ke Home
+
+</a>
+
+<a href="faq.html" class="btn secondary">
+
+Buka FAQ
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer style="
+
+margin-top:90px;
+
+padding:40px;
+
+text-align:center;
+
+color:#8ca3cb;
+
+border-top:1px solid rgba(255,255,255,.10);
+
+">
+
+© 2026 Siesta SMP • Build Together, Create Memories.
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FAQ • Siesta SMP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+background:
+radial-gradient(circle at top,#16345d 0%,#0a1020 45%,#060912 100%);
+
+font-family:Manrope,sans-serif;
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background:
+radial-gradient(circle,#6de8ff22 1px,transparent 1px);
+
+background-size:35px 35px;
+
+opacity:.35;
+
+pointer-events:none;
+
+}
+
+header{
+
+position:fixed;
+
+top:20px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:min(1100px,95%);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:14px 24px;
+
+border-radius:20px;
+
+backdrop-filter:blur(20px);
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.12);
+
+z-index:999;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+font-family:Syne;
+
+font-size:1.4rem;
+
+font-weight:800;
+
+}
+
+.logo img{
+
+width:46px;
+
+height:46px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+nav{
+
+display:flex;
+
+gap:28px;
+
+}
+
+nav a{
+
+color:white;
+
+text-decoration:none;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#74f2ff;
+
+}
+
+.hero{
+
+height:70vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-family:Syne;
+
+font-size:clamp(3rem,8vw,6rem);
+
+background:linear-gradient(90deg,#7ef3ff,#7fa8ff,#b690ff);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.hero p{
+
+max-width:700px;
+
+margin-top:20px;
+
+font-size:1.1rem;
+
+color:#c7d8ff;
+
+line-height:1.8;
+
+}
+
+.hero-buttons{
+
+margin-top:35px;
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.btn{
+
+padding:14px 28px;
+
+border-radius:14px;
+
+text-decoration:none;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.primary{
+
+background:linear-gradient(135deg,#6de8ff,#7b73ff);
+
+color:#07111e;
+
+}
+
+.secondary{
+
+border:1px solid rgba(255,255,255,.2);
+
+color:white;
+
+}
+
+.btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+main{
+
+width:min(1000px,92%);
+
+margin:auto;
+
+padding-bottom:120px;
+
+}
+
+.section-title{
+
+font-family:Syne;
+
+font-size:2.5rem;
+
+margin-bottom:40px;
+
+text-align:center;
+
+}
+
+.faq{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.item{
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(16px);
+
+border:1px solid rgba(255,255,255,.1);
+
+border-radius:18px;
+
+overflow:hidden;
+
+transition:.3s;
+
+}
+
+.item:hover{
+
+border-color:#6de8ff;
+
+}
+
+.question{
+
+padding:22px 28px;
+
+cursor:pointer;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-weight:700;
+
+font-size:1.08rem;
+
+}
+
+.question span{
+
+font-size:1.8rem;
+
+color:#6de8ff;
+
+transition:.3s;
+
+}
+
+.answer{
+
+max-height:0;
+
+overflow:hidden;
+
+transition:max-height .35s ease;
+
+}
+
+.answer p{
+
+padding:0 28px 24px;
+
+line-height:1.9;
+
+color:#bfcdf3;
+
+}
+
+.item.active .question span{
+
+transform:rotate(45deg);
+
+}
+
+footer{
+
+margin-top:120px;
+
+padding:40px;
+
+text-align:center;
+
+border-top:1px solid rgba(255,255,255,.1);
+
+color:#98aacd;
+
+}
+
+@media(max-width:800px){
+
+nav{
+
+display:none;
+
+}
+
+.hero{
+
+height:60vh;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="img/logo1.png">
+
+Siesta SMP
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="rules.html">Rules</a>
+
+<a href="faq.html">FAQ</a>
+
+<a href="donate.html">Donate</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Frequently Asked Questions</h1>
+
+<p>
+
+Semua pertanyaan yang paling sering ditanyakan pemain baru mengenai Siesta SMP.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="index.html" class="btn primary">Kembali</a>
+
+
+<a href="https://discord.gg/QrGmvhKvw" class="btn secondary">Discord</a>
+
+</div>
+
+</section>
+
+<main>
+
+<h2 class="section-title">FAQ</h2>
+
+<div class="faq">
+
+<div class="item">
+
+<div class="question">
+
+Bagaimana cara bergabung?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+
+Masukkan IP server Siesta ke Multiplayer Minecraft Java maupun Bedrock.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="question">
+
+Apakah Bedrock bisa bermain?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+
+Ya. Server mendukung Java dan Bedrock menggunakan Geyser.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="question">
+
+Apakah server menggunakan economy?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+
+Tidak. Semua transaksi dilakukan antar pemain sehingga ekonomi benar-benar dibangun oleh komunitas.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="question">
+
+Apakah tersedia Voice Chat?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+
+Ya. Pemain Java dapat menggunakan Simple Voice Chat.
+
+</p>
+
+</div>
+
+</div>
+<div class="item">
+
+<div class="question">
+
+Apakah tersedia sistem claim?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+Tidak. Setiap pemain menjaga dan mengamankan bangunan mereka agar tercipta kesan realistis antara konflik dan masa kejayaan atau prima suatu tim atau per individu.
+</p>
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="question">
+
+Apakah PvP diperbolehkan?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+Ya, PvP diperbolehkan selama tetap mengikuti aturan server dan tidak digunakan untuk mengganggu pemain lain secara berlebihan.
+</p>
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="question">
+
+Bagaimana mendapatkan Rank?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+Rank diperoleh melalui halaman Donate sebagai bentuk dukungan terhadap pengembangan server. Semua rank bersifat kosmetik dan quality of life. Tidak ada sistem Pay To Win.
+</p>
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="question">
+
+Menemukan Bug?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+Silakan laporkan bug melalui Discord resmi Siesta SMP agar Staff dapat segera memperbaikinya.
+</p>
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="question">
+
+Bagaimana menghubungi Staff?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+Kamu bisa bergabung ke Discord resmi Siesta SMP atau menghubungi Staff yang sedang online di dalam server.
+</p>
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="question">
+
+Apakah server online 24/7?
+
+<span>+</span>
+
+</div>
+
+<div class="answer">
+
+<p>
+Ya. Server aktif selama 24 jam penuh kecuali sedang dilakukan maintenance atau update besar.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<section style="margin-top:90px;">
+
+<div style="
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.12);
+
+backdrop-filter:blur(18px);
+
+padding:45px;
+
+border-radius:24px;
+
+text-align:center;
+
+">
+
+<h2 style="font-family:Syne;font-size:2rem;margin-bottom:20px;">
+
+Masih belum menemukan jawaban?
+
+</h2>
+
+<p style="color:#bfd2ff;line-height:1.8;max-width:620px;margin:auto;">
+
+Gabung ke Discord Siesta SMP. Staff kami akan dengan senang hati membantu pertanyaanmu kapan pun.
+
+</p>
+
+<div style="margin-top:35px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+
+<a class="btn primary" href="https://discord.gg/QrGmvhKvw">Join Discord</a>
+
+<a class="btn secondary" href="index.html">Kembali ke Home</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+
+© 2026 Siesta SMP • Build together, create memories.
+
+</p>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".item").forEach(item=>{
+
+const q=item.querySelector(".question");
+
+const a=item.querySelector(".answer");
+
+q.onclick=()=>{
+
+document.querySelectorAll(".item").forEach(i=>{
+
+if(i!==item){
+
+i.classList.remove("active");
+
+i.querySelector(".answer").style.maxHeight=null;
+
+}
+
+});
+
+item.classList.toggle("active");
+
+if(item.classList.contains("active")){
+
+a.style.maxHeight=a.scrollHeight+"px";
+
+}else{
+
+a.style.maxHeight=null;
+
+}
+
+};
+
+});
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.animate([
+
+{opacity:0,transform:"translateY(30px)"},
+
+{opacity:1,transform:"translateY(0px)"}
+
+],{
+
+duration:700,
+
+fill:"forwards"
+
+});
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".item").forEach(el=>observer.observe(el));
+
+</script>
+
+</body>
+
+</html>
